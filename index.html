@@ -15,8 +15,12 @@
             --sky: #0056B3;
             --solar: #FFB800;
         }
-        html { scroll-padding-top: 80px; }
-        body { font-family: 'Inter', sans-serif; }
+        html { 
+            scroll-padding-top: 90px; /* Offset for fixed navbar */
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+        }
         .bg-navy { background-color: var(--navy); }
         .text-navy { color: var(--navy); }
         .bg-sky { background-color: var(--sky); }
@@ -27,14 +31,29 @@
         .border-sky { border-color: var(--sky); }
         
         .transition-all { transition: all 0.3s ease-in-out; }
-        .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out; }
-        .mobile-menu.active { max-height: 500px; }
+        .mobile-menu { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease; 
+            opacity: 0;
+        }
+        .mobile-menu.active { 
+            max-height: 600px; 
+            opacity: 1;
+        }
         
         /* Custom scrollbar for industrial feel */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: var(--navy); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--sky); }
+
+        /* Smooth reveal animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal { animation: fadeIn 0.8s ease-out forwards; }
     </style>
 <script type="importmap">
 {
@@ -50,16 +69,15 @@
     <!-- NAVIGATION -->
     <header id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all py-8">
         <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
-            <a href="#hero" class="flex items-center gap-3">
-                <div id="logo-container" class="w-10 h-10 md:w-12 md:h-12">
-                    <!-- SVG Logo injected via script or hardcoded -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div id="logo-container" class="w-10 h-10 md:w-12 md:h-12 transition-transform group-hover:scale-110">
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 8 L50 14" stroke="#FFB800" stroke-width="3" stroke-linecap="round" />
+                        <path d="M50 8 L50 14" stroke="#FFB800" stroke-width="4" stroke-linecap="round" />
                         <path d="M22 45 A28 28 0 0 1 78 45" fill="#0056B3" />
                         <path d="M38 45 L50 30 L62 45 Z" fill="white" />
                         <rect x="22" y="50" width="22" height="28" rx="2" fill="#0B1D35" />
                         <rect x="44" y="50" width="34" height="28" rx="2" fill="#FFB800" />
-                        <path d="M52 45 L44 64 H56 L48 83" stroke="white" stroke-width="2" stroke-linejoin="round" />
+                        <path d="M52 45 L44 64 H56 L48 83" stroke="white" stroke-width="2.5" stroke-linejoin="round" />
                     </svg>
                 </div>
                 <div class="flex flex-col">
@@ -69,27 +87,27 @@
             </a>
             
             <nav class="hidden md:flex items-center gap-8 lg:gap-10">
-                <a href="#hero" class="nav-link text-xs font-black uppercase tracking-[0.2em] text-white hover:text-solar">Home</a>
-                <a href="#products" class="nav-link text-xs font-black uppercase tracking-[0.2em] text-white hover:text-solar">Products</a>
-                <a href="#applications" class="nav-link text-xs font-black uppercase tracking-[0.2em] text-white hover:text-solar">Applications</a>
-                <a href="#calculator" class="nav-link text-xs font-black uppercase tracking-[0.2em] text-white hover:text-solar">ROI Tools</a>
+                <a href="#hero" class="nav-link text-xs font-black uppercase tracking-[0.2em] text-white hover:text-solar transition-colors">Home</a>
+                <a href="#products" class="nav-link text-xs font-black uppercase tracking-[0.2em] text-white hover:text-solar transition-colors">Products</a>
+                <a href="#applications" class="nav-link text-xs font-black uppercase tracking-[0.2em] text-white hover:text-solar transition-colors">Applications</a>
+                <a href="#calculator" class="nav-link text-xs font-black uppercase tracking-[0.2em] text-white hover:text-solar transition-colors">ROI Tools</a>
                 <a href="#solutions" id="nav-cta" class="px-6 py-3 text-xs font-black uppercase tracking-[0.2em] transition-all rounded-sm border-2 border-white text-white hover:bg-white hover:text-navy">Contact Sales</a>
             </nav>
 
-            <button id="mobile-toggle" class="md:hidden p-2 text-white focus:outline-none">
+            <button id="mobile-toggle" class="md:hidden p-2 text-white focus:outline-none transition-colors">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path id="burger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </div>
 
-        <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t border-slate-100">
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t border-slate-100 shadow-2xl">
             <div class="flex flex-col p-10 gap-6 text-sm font-black text-navy uppercase tracking-[0.3em] text-center">
-                <a href="#hero" class="m-link">Home</a>
-                <a href="#products" class="m-link">Products</a>
-                <a href="#applications" class="m-link">Applications</a>
-                <a href="#calculator" class="m-link">ROI Tools</a>
-                <a href="#solutions" class="bg-navy text-white py-4 rounded-sm">Contact Sales</a>
+                <a href="#hero" class="m-link hover:text-sky">Home</a>
+                <a href="#products" class="m-link hover:text-sky">Products</a>
+                <a href="#applications" class="m-link hover:text-sky">Applications</a>
+                <a href="#calculator" class="m-link hover:text-sky">ROI Tools</a>
+                <a href="#solutions" class="m-link bg-navy text-white py-5 rounded-sm hover:bg-sky transition-colors">Contact Sales</a>
             </div>
         </div>
     </header>
@@ -98,14 +116,14 @@
     <section id="hero" class="relative h-screen flex items-center overflow-hidden bg-navy">
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1466611653911-954ffea5acc0?auto=format&fit=crop&q=80&w=1920" 
-                 class="w-full h-full object-cover opacity-30" alt="Energy Background">
+                 class="w-full h-full object-cover opacity-30 scale-105" alt="Energy Infrastructure">
             <div class="absolute inset-0 bg-gradient-to-b from-navy/60 via-transparent to-navy/80"></div>
         </div>
-        <div class="max-w-7xl mx-auto px-6 w-full z-10 text-white relative">
+        <div class="max-w-7xl mx-auto px-6 w-full z-10 text-white relative reveal">
             <div class="max-w-3xl space-y-8">
                 <div class="flex items-center gap-4">
                     <div class="h-[2px] w-12 bg-solar"></div>
-                    <span class="text-solar font-black tracking-[0.3em] uppercase text-sm">Industrial Grade Manufacturing</span>
+                    <span class="text-solar font-black tracking-[0.3em] uppercase text-sm">Empowering Global Infrastructure</span>
                 </div>
                 <h1 class="text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter">
                     LEADING <br>
@@ -116,7 +134,7 @@
                     VULT-Energy provides high-performance ESS solutions for residential, commercial, and utility-scale projects globally.
                 </p>
                 <div class="flex flex-wrap gap-5 pt-4">
-                    <a href="#products" class="bg-sky text-white px-10 py-5 rounded-sm text-lg font-black hover:bg-white hover:text-navy transition-all uppercase tracking-widest text-center">Explore Products</a>
+                    <a href="#products" class="bg-sky text-white px-10 py-5 rounded-sm text-lg font-black hover:bg-white hover:text-navy transition-all uppercase tracking-widest text-center shadow-xl">Explore Products</a>
                     <a href="#solutions" class="border-2 border-white text-white px-10 py-5 rounded-sm text-lg font-black hover:bg-white hover:text-navy transition-all uppercase tracking-widest text-center">Global Partnership</a>
                 </div>
             </div>
@@ -127,7 +145,7 @@
     <section id="applications" class="py-32 bg-slate-50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-20 items-center">
-                <div class="space-y-8">
+                <div class="space-y-8 reveal">
                     <h2 class="text-sky font-black uppercase tracking-[0.3em] text-sm">Industrial Expertise</h2>
                     <h3 class="text-5xl font-black text-navy leading-none">Global Reach, <br> Local Reliability.</h3>
                     <p class="text-xl text-slate-700 font-medium leading-relaxed">
@@ -144,9 +162,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="relative">
+                <div class="relative group reveal" style="animation-delay: 0.2s;">
+                    <div class="absolute -inset-4 bg-sky/10 rounded-xl blur-xl transition-all group-hover:bg-sky/20"></div>
                     <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e2?auto=format&fit=crop&q=80&w=1200" 
-                         class="rounded-sm shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" alt="Solar Farm">
+                         class="relative rounded-sm shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" alt="Industrial Solar">
                 </div>
             </div>
         </div>
@@ -155,93 +174,93 @@
     <!-- PRODUCT GRID -->
     <section id="products" class="py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-24 space-y-4">
+            <div class="text-center mb-24 space-y-4 reveal">
                 <h2 class="text-sky font-black uppercase tracking-[0.4em] text-sm">Advanced Portfolio</h2>
                 <h3 class="text-4xl md:text-6xl font-black text-navy leading-tight">Energy Storage Solutions</h3>
                 <div class="w-24 h-1.5 bg-solar mx-auto rounded-full"></div>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Card 1 -->
-                <div class="group bg-slate-50 border border-slate-200 overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-2">
+                <div class="group bg-slate-50 border border-slate-200 overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-2 reveal" style="animation-delay: 0.1s;">
                     <div class="h-64 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1592833159057-65c2664726c7?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <span class="absolute bottom-4 left-4 px-3 py-1 bg-white text-navy text-[10px] font-black uppercase">Residential</span>
+                        <span class="absolute bottom-4 left-4 px-3 py-1 bg-white text-navy text-[10px] font-black uppercase shadow-lg">Residential</span>
                     </div>
                     <div class="p-8 space-y-4">
                         <h4 class="text-2xl font-black text-navy">VULT Home ESS</h4>
-                        <p class="text-sm text-slate-600 font-medium">Integrated 5kW inverter and 10kWh battery stack for smart homes.</p>
-                        <ul class="text-[10px] font-black uppercase text-navy space-y-1">
-                            <li>• 5kW / 10kWh Stackable</li>
-                            <li>• LFP Safety Technology</li>
-                            <li>• 10-Year Full Warranty</li>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">Integrated 5kW inverter and 10kWh battery stack for modern smart homes.</p>
+                        <ul class="text-[10px] font-black uppercase text-navy space-y-2 border-t pt-4">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky"></span> 5kW / 10kWh Stackable</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky"></span> LFP Safety Technology</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky"></span> 10-Year Full Warranty</li>
                         </ul>
-                        <a href="#solutions" class="block w-full text-center bg-navy text-white py-4 text-xs font-black uppercase tracking-widest hover:bg-sky transition-colors">Technical Data</a>
+                        <a href="#solutions" class="block w-full text-center bg-navy text-white py-4 text-xs font-black uppercase tracking-widest hover:bg-sky transition-colors mt-6">Technical Data</a>
                     </div>
                 </div>
                 <!-- Card 2 -->
-                <div class="group bg-slate-50 border border-slate-200 overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-2">
+                <div class="group bg-slate-50 border border-slate-200 overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-2 reveal" style="animation-delay: 0.2s;">
                     <div class="h-64 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <span class="absolute bottom-4 left-4 px-3 py-1 bg-white text-navy text-[10px] font-black uppercase">C&I Storage</span>
+                        <span class="absolute bottom-4 left-4 px-3 py-1 bg-white text-navy text-[10px] font-black uppercase shadow-lg">C&I Storage</span>
                     </div>
                     <div class="p-8 space-y-4">
                         <h4 class="text-2xl font-black text-navy">VULT Tower-C</h4>
-                        <p class="text-sm text-slate-600 font-medium">Commercial peak shaving solution for industrial sites.</p>
-                        <ul class="text-[10px] font-black uppercase text-navy space-y-1">
-                            <li>• 50kW - 250kW Scalable</li>
-                            <li>• Modular Cooling</li>
-                            <li>• EMS Integrated</li>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">Commercial peak shaving solution optimized for industrial sites.</p>
+                        <ul class="text-[10px] font-black uppercase text-navy space-y-2 border-t pt-4">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky"></span> 50kW - 250kW Scalable</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky"></span> Modular Liquid Cooling</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky"></span> EMS Integrated</li>
                         </ul>
-                        <a href="#solutions" class="block w-full text-center bg-navy text-white py-4 text-xs font-black uppercase tracking-widest hover:bg-sky transition-colors">Technical Data</a>
+                        <a href="#solutions" class="block w-full text-center bg-navy text-white py-4 text-xs font-black uppercase tracking-widest hover:bg-sky transition-colors mt-6">Technical Data</a>
                     </div>
                 </div>
                 <!-- Card 3 -->
-                <div class="group bg-slate-50 border border-slate-200 overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-2">
+                <div class="group bg-slate-50 border border-slate-200 overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-2 reveal" style="animation-delay: 0.3s;">
                     <div class="h-64 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1466611653911-954ffea5acc0?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <span class="absolute bottom-4 left-4 px-3 py-1 bg-white text-navy text-[10px] font-black uppercase">Utility</span>
+                        <span class="absolute bottom-4 left-4 px-3 py-1 bg-white text-navy text-[10px] font-black uppercase shadow-lg">Utility</span>
                     </div>
                     <div class="p-8 space-y-4">
                         <h4 class="text-2xl font-black text-navy">Grid-Sync ESS</h4>
-                        <p class="text-sm text-slate-600 font-medium">Megawatt-scale containerized storage for grid stabilization.</p>
-                        <ul class="text-[10px] font-black uppercase text-navy space-y-1">
-                            <li>• 1MW+ Capacity</li>
-                            <li>• Liquid Cooled Rack</li>
-                            <li>• SCADA Interface</li>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">Megawatt-scale containerized storage for grid-side stabilization.</p>
+                        <ul class="text-[10px] font-black uppercase text-navy space-y-2 border-t pt-4">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky"></span> 1MW+ Batch Capacity</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky"></span> IP67 Liquid Cooled</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky"></span> SCADA Cloud Interface</li>
                         </ul>
-                        <a href="#solutions" class="block w-full text-center bg-navy text-white py-4 text-xs font-black uppercase tracking-widest hover:bg-sky transition-colors">Technical Data</a>
+                        <a href="#solutions" class="block w-full text-center bg-navy text-white py-4 text-xs font-black uppercase tracking-widest hover:bg-sky transition-colors mt-6">Technical Data</a>
                     </div>
                 </div>
                 <!-- Card 4 -->
-                <div class="group bg-slate-50 border border-slate-200 overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-2">
+                <div class="group bg-slate-50 border border-slate-200 overflow-hidden transition-all hover:shadow-2xl hover:-translate-y-2 reveal" style="animation-delay: 0.4s;">
                     <div class="h-64 overflow-hidden relative">
                         <img src="https://images.unsplash.com/photo-1558444479-c84851830060?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                        <span class="absolute bottom-4 left-4 px-3 py-1 bg-white text-navy text-[10px] font-black uppercase">Inverters</span>
+                        <span class="absolute bottom-4 left-4 px-3 py-1 bg-white text-navy text-[10px] font-black uppercase shadow-lg">Inverters</span>
                     </div>
                     <div class="p-8 space-y-4">
                         <h4 class="text-2xl font-black text-navy">Hybrid Inverter</h4>
-                        <p class="text-sm text-slate-600 font-medium">Power conversion with integrated AI optimization.</p>
-                        <ul class="text-[10px] font-black uppercase text-navy space-y-1">
-                            <li>• 98.9% Max Efficiency</li>
-                            <li>• Triple MPPT Trackers</li>
-                            <li>• IP65 Industrial Rated</li>
+                        <p class="text-sm text-slate-600 font-medium leading-relaxed">Industrial-grade power conversion with integrated AI optimization.</p>
+                        <ul class="text-[10px] font-black uppercase text-navy space-y-2 border-t pt-4">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky"></span> 98.9% Max Efficiency</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky"></span> Triple MPPT Trackers</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-sky"></span> IP65 Rugged Housing</li>
                         </ul>
-                        <a href="#solutions" class="block w-full text-center bg-navy text-white py-4 text-xs font-black uppercase tracking-widest hover:bg-sky transition-colors">Technical Data</a>
+                        <a href="#solutions" class="block w-full text-center bg-navy text-white py-4 text-xs font-black uppercase tracking-widest hover:bg-sky transition-colors mt-6">Technical Data</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CALCULATOR -->
+    <!-- ROI CALCULATOR -->
     <section id="calculator" class="py-32 bg-navy text-white relative">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
-            <div class="space-y-10">
+            <div class="space-y-10 reveal">
                 <h2 class="text-6xl font-black leading-tight tracking-tighter">
-                    VULT ROI <br> <span class="text-solar">Impact Model</span>
+                    VULT ROI <br> <span class="text-solar underline decoration-sky underline-offset-8">Impact Model</span>
                 </h2>
-                <p class="text-xl font-medium text-slate-300">Estimate your industrial energy independence and carbon reduction.</p>
-                <div class="space-y-8 bg-white/5 p-10 rounded-2xl border border-white/10">
+                <p class="text-xl font-medium text-slate-300 max-w-lg">Estimate your project's energy independence and long-term financial yield.</p>
+                <div class="space-y-10 bg-white/5 p-10 rounded-3xl border border-white/10 backdrop-blur-sm">
                     <div class="space-y-4">
                         <div class="flex justify-between text-lg font-black">
                             <label>Monthly Bill ($)</label>
@@ -258,27 +277,27 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-white rounded-3xl p-12 text-navy space-y-8 shadow-2xl">
-                <div class="text-center border-b pb-6">
-                    <span class="text-xs font-black uppercase tracking-[0.3em] opacity-50">Estimated Impact</span>
+            <div class="bg-white rounded-[2.5rem] p-12 text-navy space-y-10 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] reveal" style="animation-delay: 0.2s;">
+                <div class="text-center border-b border-slate-100 pb-6">
+                    <span class="text-xs font-black uppercase tracking-[0.3em] opacity-50">Industrial Grade Projection</span>
                 </div>
-                <div class="grid gap-6">
-                    <div class="p-6 bg-slate-50 rounded-xl">
-                        <div class="text-[10px] font-black uppercase tracking-widest opacity-60 mb-1">Annual Savings</div>
-                        <div id="res-annual" class="text-5xl font-black tracking-tighter">$1,250</div>
+                <div class="grid gap-8">
+                    <div class="p-8 bg-slate-50 rounded-2xl border-2 border-slate-100 group transition-colors hover:border-sky/30">
+                        <div class="text-[10px] font-black uppercase tracking-widest opacity-60 mb-2">Projected Annual Savings</div>
+                        <div id="res-annual" class="text-6xl font-black tracking-tighter text-navy group-hover:text-sky transition-colors">$1,250</div>
                     </div>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="p-6 bg-slate-50 rounded-xl">
-                            <div class="text-[10px] font-black uppercase tracking-widest opacity-60 mb-1">CO2 (Tons)</div>
-                            <div id="res-co2" class="text-3xl font-black tracking-tighter">2.5</div>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="p-8 bg-slate-50 rounded-2xl border-2 border-slate-100">
+                            <div class="text-[10px] font-black uppercase tracking-widest opacity-60 mb-2">CO2 Neutral (Tons)</div>
+                            <div id="res-co2" class="text-3xl font-black tracking-tighter text-sky">2.5</div>
                         </div>
-                        <div class="p-6 bg-slate-50 rounded-xl">
-                            <div class="text-[10px] font-black uppercase tracking-widest opacity-60 mb-1">25-Year ROI</div>
-                            <div id="res-roi" class="text-3xl font-black tracking-tighter">$31,250</div>
+                        <div class="p-8 bg-slate-50 rounded-2xl border-2 border-slate-100">
+                            <div class="text-[10px] font-black uppercase tracking-widest opacity-60 mb-2">25-Year Asset Value</div>
+                            <div id="res-roi" class="text-3xl font-black tracking-tighter text-solar">$31,250</div>
                         </div>
                     </div>
                 </div>
-                <a href="#solutions" class="block w-full text-center bg-navy text-white py-5 font-black uppercase tracking-widest hover:bg-sky transition-colors">Request Quote</a>
+                <a href="#solutions" class="block w-full text-center bg-navy text-white py-6 rounded-2xl font-black uppercase tracking-widest hover:bg-sky transition-all transform hover:scale-[1.02] shadow-xl">Get Technical Quote</a>
             </div>
         </div>
     </section>
@@ -286,70 +305,103 @@
     <!-- CONTACT SECTION -->
     <section id="solutions" class="py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="bg-slate-50 border border-slate-200 p-16 md:p-24 grid lg:grid-cols-2 gap-20">
-                <div class="space-y-8">
-                    <h2 class="text-5xl font-black text-navy leading-none">Start Your Project With VULT</h2>
-                    <p class="text-lg text-slate-600 font-medium leading-relaxed">Our technical engineers provide comprehensive design consultation for utility-scale and industrial projects.</p>
-                    <div class="space-y-4">
+            <div class="bg-slate-50 border border-slate-200 p-12 md:p-24 grid lg:grid-cols-2 gap-20 rounded-sm">
+                <div class="space-y-8 reveal">
+                    <h2 class="text-5xl font-black text-navy leading-none">Global Partnership <br> & Inquiries</h2>
+                    <p class="text-lg text-slate-600 font-medium leading-relaxed max-w-lg">Our application engineers provide end-to-end design and procurement support for tier-1 energy projects.</p>
+                    <div class="space-y-6 pt-4">
                         <div class="flex items-center gap-4 text-xs font-black uppercase tracking-widest text-navy">
-                            <div class="w-8 h-8 bg-sky text-white flex items-center justify-center rounded-sm">✓</div> Technical Configuration
+                            <div class="w-10 h-10 bg-sky text-white flex items-center justify-center rounded-sm shadow-lg">✓</div> Regional Compliance & Standards
                         </div>
                         <div class="flex items-center gap-4 text-xs font-black uppercase tracking-widest text-navy">
-                            <div class="w-8 h-8 bg-sky text-white flex items-center justify-center rounded-sm">✓</div> Global Shipment Support
+                            <div class="w-10 h-10 bg-sky text-white flex items-center justify-center rounded-sm shadow-lg">✓</div> Bulk Manufacturing (OEM/ODM)
+                        </div>
+                        <div class="flex items-center gap-4 text-xs font-black uppercase tracking-widest text-navy">
+                            <div class="w-10 h-10 bg-sky text-white flex items-center justify-center rounded-sm shadow-lg">✓</div> Global Supply Chain Logistics
                         </div>
                     </div>
                 </div>
-                <form class="space-y-4" onsubmit="event.preventDefault()">
-                    <input type="text" placeholder="Full Name" class="w-full p-4 border border-slate-200 focus:outline-none focus:border-sky font-bold">
-                    <input type="email" placeholder="Email Address" class="w-full p-4 border border-slate-200 focus:outline-none focus:border-sky font-bold">
-                    <select class="w-full p-4 border border-slate-200 focus:outline-none focus:border-sky font-bold">
-                        <option>Residential Project</option>
-                        <option>C&I Application</option>
-                        <option>Utility Scale</option>
-                        <option>ODM/OEM Partnership</option>
-                    </select>
-                    <textarea placeholder="Project details..." rows="4" class="w-full p-4 border border-slate-200 focus:outline-none focus:border-sky font-bold"></textarea>
-                    <button class="w-full bg-navy text-white py-5 font-black uppercase tracking-widest hover:bg-sky transition-colors">Submit Inquiry</button>
-                </form>
+                <div class="bg-white p-10 shadow-2xl border border-slate-100 rounded-xl reveal" style="animation-delay: 0.2s;">
+                    <form class="space-y-5" onsubmit="event.preventDefault()">
+                        <div>
+                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 block">Company Representative</label>
+                            <input type="text" placeholder="Full Name" class="w-full p-4 bg-slate-50 border border-slate-200 focus:outline-none focus:border-sky font-bold transition-all">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 block">Corporate Email</label>
+                            <input type="email" placeholder="email@company.com" class="w-full p-4 bg-slate-50 border border-slate-200 focus:outline-none focus:border-sky font-bold transition-all">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 block">Application Type</label>
+                            <select class="w-full p-4 bg-slate-50 border border-slate-200 focus:outline-none focus:border-sky font-bold transition-all">
+                                <option>Utility-Scale Project</option>
+                                <option>Commercial ESS (C&I)</option>
+                                <option>Residential Distribution</option>
+                                <option>Hardware OEM Partnership</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 block">Project Details</label>
+                            <textarea placeholder="Tell us about your capacity requirements..." rows="4" class="w-full p-4 bg-slate-50 border border-slate-200 focus:outline-none focus:border-sky font-bold transition-all"></textarea>
+                        </div>
+                        <button class="w-full bg-navy text-white py-5 font-black uppercase tracking-widest hover:bg-sky transition-all shadow-xl hover:-translate-y-1">Initialize Consultation</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-50 pt-24 pb-12 border-t">
+    <footer class="bg-slate-50 pt-24 pb-12 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-4 gap-12 mb-20">
                 <div class="space-y-6">
-                    <div class="text-2xl font-black tracking-tighter text-navy">VULT<span class="text-sky">-Energy</span></div>
-                    <p class="text-slate-500 font-bold text-sm leading-relaxed">Leading the global transition to clean, decentralized energy infrastructure.</p>
+                    <div class="text-2xl font-black tracking-tighter text-navy flex items-center gap-2">
+                        <div class="w-8 h-8">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 45 A28 28 0 0 1 78 45" fill="#0056B3" />
+                                <rect x="22" y="50" width="22" height="28" rx="2" fill="#0B1D35" />
+                                <rect x="44" y="50" width="34" height="28" rx="2" fill="#FFB800" />
+                            </svg>
+                        </div>
+                        VULT<span class="text-sky font-bold">Energy</span>
+                    </div>
+                    <p class="text-slate-500 font-bold text-sm leading-relaxed">Pioneering standard-compliant, industrial energy storage solutions for a sustainable global grid.</p>
                 </div>
                 <div>
-                    <h5 class="font-black text-navy uppercase text-xs tracking-widest mb-6">Solutions</h5>
-                    <ul class="space-y-3 text-sm font-bold text-slate-600">
-                        <li><a href="#products" class="hover:text-sky">Smart Storage</a></li>
-                        <li><a href="#products" class="hover:text-sky">Hybrid Inverters</a></li>
-                        <li><a href="#applications" class="hover:text-sky">Utility Scale</a></li>
+                    <h5 class="font-black text-navy uppercase text-xs tracking-[0.2em] mb-6">Hardware</h5>
+                    <ul class="space-y-4 text-sm font-bold text-slate-600">
+                        <li><a href="#products" class="hover:text-sky transition-colors">VULT Tower-C</a></li>
+                        <li><a href="#products" class="hover:text-sky transition-colors">Grid-Sync ESS</a></li>
+                        <li><a href="#products" class="hover:text-sky transition-colors">Smart Inverters</a></li>
+                        <li><a href="#products" class="hover:text-sky transition-colors">Li-Core Storage</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-black text-navy uppercase text-xs tracking-widest mb-6">Company</h5>
-                    <ul class="space-y-3 text-sm font-bold text-slate-600">
-                        <li><a href="#hero" class="hover:text-sky">About Us</a></li>
-                        <li><a href="#solutions" class="hover:text-sky">Partnership</a></li>
-                        <li><a href="#solutions" class="hover:text-sky">Careers</a></li>
+                    <h5 class="font-black text-navy uppercase text-xs tracking-[0.2em] mb-6">Support</h5>
+                    <ul class="space-y-4 text-sm font-bold text-slate-600">
+                        <li><a href="#hero" class="hover:text-sky transition-colors">Project Design</a></li>
+                        <li><a href="#solutions" class="hover:text-sky transition-colors">Supply Chain</a></li>
+                        <li><a href="#applications" class="hover:text-sky transition-colors">Technical Docs</a></li>
+                        <li><a href="#calculator" class="hover:text-sky transition-colors">Yield Modeling</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-black text-navy uppercase text-xs tracking-widest mb-6">Contact</h5>
-                    <p class="text-sm font-bold text-slate-600 mb-2">Technical HQ:</p>
-                    <p class="text-sm font-medium text-slate-500">22 Energy Park Way,<br>Industrial Hub, CA 90210</p>
+                    <h5 class="font-black text-navy uppercase text-xs tracking-[0.2em] mb-6">Headquarters</h5>
+                    <p class="text-sm font-bold text-slate-600 mb-2">Technical Operations:</p>
+                    <address class="text-sm font-medium text-slate-500 not-italic leading-relaxed">
+                        22 Energy Park Way,<br>
+                        Industrial Hub, Suite 400<br>
+                        Palo Alto, CA 94301
+                    </address>
                 </div>
             </div>
-            <div class="pt-8 border-t flex justify-between text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                <div>© 2024 VULT Smart Energy</div>
-                <div class="flex gap-6">
-                    <a href="#">Privacy</a>
-                    <a href="#">Technical Compliance</a>
+            <div class="pt-10 border-t border-slate-200 flex flex-col md:row justify-between text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] gap-6 text-center md:text-left">
+                <div>© 2024 VULT Smart Energy. Manufacturing Excellence Globally.</div>
+                <div class="flex justify-center md:justify-end gap-8">
+                    <a href="#" class="hover:text-navy">Privacy Policy</a>
+                    <a href="#" class="hover:text-navy">Trade Compliance</a>
+                    <a href="#" class="hover:text-navy">Certifications</a>
                 </div>
             </div>
         </div>
