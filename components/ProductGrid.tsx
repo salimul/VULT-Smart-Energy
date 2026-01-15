@@ -15,15 +15,15 @@ const ProductGrid: React.FC = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {PRODUCTS.map((product) => (
             <div key={product.id} className="group relative flex flex-col bg-slate-50 border border-slate-200 overflow-hidden transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-2 rounded-xl">
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-80 overflow-hidden bg-white">
                 <img 
                   src={product.image} 
                   alt={product.name}
-                  className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-full object-contain p-4 transition-all duration-700"
                 />
-                <div className="absolute inset-0 bg-navy/10 group-hover:bg-transparent transition-colors" />
+                <div className="absolute inset-0 bg-navy/5 group-hover:bg-transparent transition-colors pointer-events-none" />
                 <div className="absolute bottom-4 left-4">
-                   <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-navy text-[10px] font-black uppercase tracking-widest shadow-lg rounded-sm">
+                   <span className="px-3 py-1 bg-navy/90 backdrop-blur-sm text-white text-[10px] font-black uppercase tracking-widest shadow-lg rounded-sm">
                      {product.category}
                    </span>
                 </div>

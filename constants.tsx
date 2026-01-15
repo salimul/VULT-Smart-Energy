@@ -11,13 +11,16 @@ export const COLORS = {
   PEARL: '#F8FAFC', 
 };
 
+// High-resolution representation of the provided VULT hardware image
+const VULT_HARDWARE_IMAGE = "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1200";
+
 export const PRODUCTS: Product[] = [
   {
     id: 'vult-res-1',
     name: 'VULT Home ESS (All-in-one)',
     category: 'Residential Storage',
     description: 'Integrated 5kW inverter and 10kWh lithium battery stack with seamless switching and sleek residential design.',
-    image: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1200',
     specs: ['5kW / 10kWh', 'LFP Safety Tech', '10-Year Warranty'],
   },
   {
@@ -25,7 +28,7 @@ export const PRODUCTS: Product[] = [
     name: 'VULT Tower-C Industrial',
     category: 'C&I Storage',
     description: 'Scalable energy storage system for commercial buildings, optimized for peak shaving and load shifting.',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1200',
     specs: ['50kW - 250kW', 'Modular Cooling', 'EMS Integrated'],
   },
   {
@@ -33,7 +36,7 @@ export const PRODUCTS: Product[] = [
     name: 'VULT Grid-Sync Utility',
     category: 'Utility Scale ESS',
     description: 'Megawatt-scale containerized storage solutions for grid stabilization and renewable integration.',
-    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1200',
     specs: ['1MW+ Capacity', 'Liquid Cooling', 'SCADA Support'],
   },
   {
@@ -41,7 +44,7 @@ export const PRODUCTS: Product[] = [
     name: 'VULT-Sync Hybrid Inverter',
     category: 'Smart Inverters',
     description: 'Next-generation power conversion with 98.9% efficiency and integrated cloud-based AI optimization.',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1200',
     specs: ['98.9% Efficiency', 'Triple MPPT', 'IP65 Rated'],
   }
 ];

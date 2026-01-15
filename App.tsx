@@ -58,14 +58,21 @@ const App: React.FC = () => {
 
               <div className="relative">
                 <div className="absolute -inset-10 bg-sky/5 rounded-full blur-[100px]" />
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl group bg-slate-200">
+                <div className="relative rounded-[2rem] overflow-hidden shadow-2xl group bg-white border-4 border-white">
+                  {/* Updated with a high-quality lifestyle image representing the VULT Smart Node in a modern interior */}
                   <img 
-                    src="https://images.unsplash.com/photo-1509391366360-fe5bb58583bb?auto=format&fit=crop&q=80&w=1200" 
-                    alt="Global Deployment" 
-                    className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200" 
+                    alt="VULT Smart Energy Deployment" 
+                    className="w-full h-auto transition-all duration-700 scale-105 group-hover:scale-100 object-cover aspect-[4/3]"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-navy/20 group-hover:bg-transparent transition-colors" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent group-hover:from-transparent transition-all duration-500" />
+                  
+                  {/* Floating Overlay Badge for Context */}
+                  <div className="absolute bottom-6 right-6 bg-white/90 backdrop-blur-md px-6 py-4 rounded-2xl shadow-xl border border-white/20">
+                    <div className="text-[10px] font-black uppercase tracking-widest text-sky mb-1">Featured Install</div>
+                    <div className="text-navy font-bold text-sm">Corporate Smart Grid Node</div>
+                  </div>
                 </div>
               </div>
             </div>
