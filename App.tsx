@@ -135,7 +135,9 @@ const App: React.FC = () => {
                     <option>Smart Inverters</option>
                   </select>
                   <textarea placeholder="Tell us about your project" rows={4} className="w-full px-6 py-4 bg-slate-50 border-2 border-slate-100 focus:outline-none focus:border-sky font-bold rounded-xl transition-colors"></textarea>
-                  <button className="w-full bg-navy text-white py-6 rounded-xl font-black uppercase tracking-widest hover:bg-sky hover:-translate-y-1 active:scale-95 transition-all shadow-xl shadow-navy/20">Submit Inquiry</button>
+                  <button className="w-full bg-navy text-white py-6 rounded-xl font-black uppercase tracking-widest hover:bg-sky hover:-translate-y-1 active:scale-95 transition-all shadow-xl shadow-navy/20">
+                    Submit Inquiry
+                  </button>
                 </form>
               </div>
             </div>
