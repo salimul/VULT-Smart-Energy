@@ -3,9 +3,9 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-slate-50 pt-20 md:pt-0">
-      {/* Decorative clean background patterns */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-white hidden lg:block" />
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-slate-50 pt-24 md:pt-32 lg:pt-0">
+      {/* Decorative patterns */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-white hidden lg:block z-0" />
       <div className="absolute top-0 right-0 w-full h-full opacity-[0.03] pointer-events-none z-0">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -17,27 +17,27 @@ const Hero: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 w-full z-10 grid lg:grid-cols-12 gap-12 items-center">
         {/* Content Column */}
-        <div className="lg:col-span-7 space-y-10 py-12">
-          <div className="flex items-center gap-4 animate-fade-in">
+        <div className="lg:col-span-7 space-y-8 lg:py-24">
+          <div className="flex items-center gap-4">
             <div className="h-[2px] w-12 bg-[#E37B2F]" />
-            <span className="text-[#E37B2F] font-black tracking-[0.3em] uppercase text-xs">The Future of Smart Energy</span>
+            <span className="text-[#E37B2F] font-black tracking-[0.3em] uppercase text-xs">Innovation in Storage</span>
           </div>
           
-          <h1 className="text-5xl md:text-[5.5rem] font-extrabold leading-[1] tracking-tight text-[#0B1D35]">
+          <h1 className="text-5xl md:text-[5.5rem] font-extrabold leading-[1.1] tracking-tight text-[#0B1D35]">
             INTELLIGENT <br />
             <span className="text-[#0056B3]">ENERGY STORAGE</span> <br />
             SIMPLIFIED.
           </h1>
           
           <p className="text-lg md:text-2xl text-slate-600 max-w-xl leading-relaxed font-medium">
-            Meet the <span className="text-[#0B1D35] font-bold">VULT Smart Node</span>. A high-performance ESS solution designed for the modern home and global infrastructure.
+            Meet the <span className="text-[#0B1D35] font-bold">VULT Smart Node</span>. A high-performance ESS solution designed for modern interiors and global infrastructure.
           </p>
           
           <div className="flex flex-wrap gap-5 pt-4">
-            <a href="#products" className="bg-[#0B1D35] text-white px-10 py-5 rounded-lg text-lg font-black hover:bg-[#0056B3] transition-all shadow-2xl inline-block uppercase tracking-widest text-center">
+            <a href="#products" className="bg-[#0B1D35] text-white px-10 py-5 rounded-lg text-lg font-black hover:bg-[#0056B3] hover:-translate-y-1 active:scale-95 transition-all shadow-xl inline-block uppercase tracking-widest text-center">
               Explore Products
             </a>
-            <a href="#solutions" className="bg-white border-2 border-slate-200 text-[#0B1D35] px-10 py-5 rounded-lg text-lg font-black hover:border-[#0B1D35] transition-all inline-block uppercase tracking-widest text-center">
+            <a href="#solutions" className="bg-white border-2 border-slate-200 text-[#0B1D35] px-10 py-5 rounded-lg text-lg font-black hover:border-[#0B1D35] hover:-translate-y-1 active:scale-95 transition-all inline-block uppercase tracking-widest text-center">
               Global Supply
             </a>
           </div>
@@ -61,22 +61,19 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Image Column */}
-        <div className="lg:col-span-5 relative group">
+        <div className="lg:col-span-5 relative group py-12 lg:py-0">
           <div className="absolute -inset-4 bg-[#0056B3]/5 rounded-[3rem] blur-3xl group-hover:bg-[#0056B3]/10 transition-all duration-700" />
           
-          {/* Main Product Render (Matches User Attachment) */}
           <div className="relative rounded-[2rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border-4 border-white transition-transform duration-700 group-hover:scale-[1.02]">
             <img 
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200" 
               alt="VULT Smart Energy Node" 
-              className="w-full h-auto"
+              className="w-full h-auto block"
             />
-            {/* Overlay Gradient to clean up the edges */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none" />
           </div>
 
-          {/* Floating UI Element */}
-          <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-2xl border border-slate-100 animate-bounce duration-[4000ms]">
+          <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-2xl border border-slate-100 animate-bounce duration-[4000ms] hidden sm:block">
             <div className="flex items-center gap-3">
               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
               <span className="text-xs font-black uppercase tracking-widest text-[#0B1D35]">System Active</span>

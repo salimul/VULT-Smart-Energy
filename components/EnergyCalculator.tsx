@@ -7,7 +7,6 @@ const EnergyCalculator: React.FC = () => {
   const [batterySize, setBatterySize] = useState(10);
 
   const stats = useMemo(() => {
-    // Realistic supply-side calculation model
     const annualSpend = bill * 12;
     const efficiencyFactor = 0.985;
     const solarCoverage = Math.min(0.9, (sunlight * 0.15));
@@ -23,7 +22,6 @@ const EnergyCalculator: React.FC = () => {
 
   return (
     <section id="calculator" className="py-32 bg-navy relative overflow-hidden">
-      {/* Visual background patterns */}
       <div className="absolute top-0 right-0 w-full h-full opacity-5 pointer-events-none">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <pattern id="dotPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -38,7 +36,7 @@ const EnergyCalculator: React.FC = () => {
           <div className="space-y-4">
             <h2 className="text-6xl font-black text-white leading-tight tracking-tighter">
               The Power of <br />
-              <span className="text-solar underline decoration-sky-500 decoration-8 underline-offset-8">VULT Efficiency</span>
+              <span className="text-[#E37B2F] underline decoration-sky-500 decoration-8 underline-offset-8">VULT Efficiency</span>
             </h2>
             <p className="text-white text-xl font-bold max-w-lg leading-relaxed opacity-90">
               Our precision-engineered hardware reduces grid dependence by up to 90%. Use our industrial model to estimate your savings.
@@ -49,14 +47,14 @@ const EnergyCalculator: React.FC = () => {
             <div className="space-y-4">
               <div className="flex justify-between text-white font-black text-lg">
                 <label>Monthly Energy Expenditure</label>
-                <span className="text-solar text-2xl">${bill}</span>
+                <span className="text-[#E37B2F] text-2xl">${bill}</span>
               </div>
               <input 
                 type="range" 
                 min="50" max="2000" step="50"
                 value={bill}
                 onChange={(e) => setBill(Number(e.target.value))}
-                className="w-full h-3 bg-white/20 rounded-full appearance-none cursor-pointer accent-solar"
+                className="w-full h-3 bg-white/20 rounded-full appearance-none cursor-pointer accent-[#E37B2F]"
               />
             </div>
 
@@ -91,7 +89,7 @@ const EnergyCalculator: React.FC = () => {
         </div>
 
         <div className="bg-white rounded-[4rem] p-16 shadow-[0_50px_100px_-12px_rgba(0,0,0,0.5)] relative">
-          <div className="absolute -top-10 -right-10 bg-solar text-navy p-6 rounded-3xl font-black text-2xl rotate-6 shadow-2xl border-4 border-white">
+          <div className="absolute -top-10 -right-10 bg-[#E37B2F] text-navy p-6 rounded-3xl font-black text-2xl rotate-6 shadow-2xl border-4 border-white">
             VULT-TECH™
           </div>
           
@@ -113,14 +111,14 @@ const EnergyCalculator: React.FC = () => {
                 </div>
                 <div className="p-8 bg-slate-50 rounded-3xl border-2 border-slate-100">
                   <div className="text-slate-900 text-xs font-black uppercase tracking-widest mb-2 opacity-60">CO2 Reduction</div>
-                  <div className="text-3xl font-black text-solar tracking-tighter">{stats.co2} Tons</div>
+                  <div className="text-3xl font-black text-[#E37B2F] tracking-tighter">{stats.co2} Tons</div>
                 </div>
               </div>
             </div>
 
             <a 
               href="#solutions" 
-              className="block w-full text-center bg-navy text-white py-6 rounded-3xl text-2xl font-black hover:bg-sky-600 transition-all transform hover:scale-[1.02] shadow-2xl shadow-navy/20"
+              className="block w-full text-center bg-navy text-white py-6 rounded-[2rem] text-2xl font-black hover:bg-sky-600 hover:-translate-y-1 active:scale-95 transition-all shadow-2xl shadow-navy/20"
             >
               Get Supply Quote
             </a>

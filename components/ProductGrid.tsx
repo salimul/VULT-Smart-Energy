@@ -12,18 +12,18 @@ const ProductGrid: React.FC = () => {
           <div className="w-24 h-1.5 bg-solar mx-auto rounded-full" />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {PRODUCTS.map((product) => (
-            <div key={product.id} className="group relative flex flex-col bg-slate-50 border border-slate-200 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-2">
+            <div key={product.id} className="group relative flex flex-col bg-slate-50 border border-slate-200 overflow-hidden transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-2 rounded-xl">
               <div className="relative h-64 overflow-hidden">
                 <img 
                   src={product.image} 
                   alt={product.name}
                   className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-700"
                 />
-                <div className="absolute inset-0 bg-navy/20 group-hover:bg-transparent transition-colors" />
+                <div className="absolute inset-0 bg-navy/10 group-hover:bg-transparent transition-colors" />
                 <div className="absolute bottom-4 left-4">
-                   <span className="px-3 py-1 bg-white text-navy text-[10px] font-black uppercase tracking-widest shadow-lg">
+                   <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-navy text-[10px] font-black uppercase tracking-widest shadow-lg rounded-sm">
                      {product.category}
                    </span>
                 </div>
@@ -45,7 +45,7 @@ const ProductGrid: React.FC = () => {
                 </div>
 
                 <div className="pt-6 mt-auto">
-                  <a href="#solutions" className="block w-full text-center bg-navy text-white py-4 text-xs font-black uppercase tracking-[0.2em] hover:bg-sky transition-colors">
+                  <a href="#solutions" className="block w-full text-center bg-navy text-white py-4 rounded-lg text-xs font-black uppercase tracking-[0.2em] hover:bg-sky hover:-translate-y-0.5 active:scale-95 transition-all shadow-md">
                     Technical Overview
                   </a>
                 </div>
