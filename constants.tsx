@@ -15,7 +15,7 @@ export const PRODUCTS: Product[] = [
     name: 'VULT Home ESS (All-in-one)',
     category: 'Residential Storage',
     description: 'Integrated 5kW inverter and 10kWh lithium battery stack with seamless switching and sleek residential design.',
-    image: 'https://images.unsplash.com/photo-1592833159057-65c2664726c7?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800',
     specs: ['5kW / 10kWh', 'LFP Safety Tech', '10-Year Warranty'],
   },
   {
@@ -23,7 +23,7 @@ export const PRODUCTS: Product[] = [
     name: 'VULT Tower-C Industrial',
     category: 'C&I Storage',
     description: 'Scalable energy storage system for commercial buildings, optimized for peak shaving and load shifting.',
-    image: 'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',
     specs: ['50kW - 250kW', 'Modular Cooling', 'EMS Integrated'],
   },
   {
@@ -31,7 +31,7 @@ export const PRODUCTS: Product[] = [
     name: 'VULT Grid-Sync Utility',
     category: 'Utility Scale ESS',
     description: 'Megawatt-scale containerized storage solutions for grid stabilization and renewable integration.',
-    image: 'https://images.unsplash.com/photo-1466611653911-954ffea5acc0?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800',
     specs: ['1MW+ Capacity', 'Liquid Cooling', 'SCADA Support'],
   },
   {
@@ -39,29 +39,25 @@ export const PRODUCTS: Product[] = [
     name: 'VULT-Sync Hybrid Inverter',
     category: 'Smart Inverters',
     description: 'Next-generation power conversion with 98.9% efficiency and integrated cloud-based AI optimization.',
-    image: 'https://images.unsplash.com/photo-1558444479-c84851830060?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800',
     specs: ['98.9% Efficiency', 'Triple MPPT', 'IP65 Rated'],
   }
 ];
 
 export const Logo = ({ className = "w-10 h-10" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="45" stroke={COLORS.NAVY} strokeWidth="2" opacity="0.1" />
     <g>
-      <path d="M50 8 L50 14" stroke={COLORS.SOLAR} strokeWidth="3" strokeLinecap="round" />
-      <path d="M68 15 L64 20" stroke={COLORS.SOLAR} strokeWidth="3" strokeLinecap="round" />
-      <path d="M82 30 L77 34" stroke={COLORS.SOLAR} strokeWidth="3" strokeLinecap="round" />
-      <path d="M32 15 L36 20" stroke={COLORS.SOLAR} strokeWidth="3" strokeLinecap="round" />
-      <path d="M18 30 L23 34" stroke={COLORS.SOLAR} strokeWidth="3" strokeLinecap="round" />
+      <path d="M50 8 L50 14" stroke={COLORS.SOLAR} strokeWidth="4" strokeLinecap="round" />
+      <path d="M72 18 L68 24" stroke={COLORS.SOLAR} strokeWidth="4" strokeLinecap="round" />
+      <path d="M28 18 L32 24" stroke={COLORS.SOLAR} strokeWidth="4" strokeLinecap="round" />
     </g>
-    <path d="M22 45 A28 28 0 0 1 78 45" fill={COLORS.SKY} />
-    <path d="M38 45 L50 30 L62 45 Z" fill="white" />
-    <path d="M45 45 L55 35 L65 45 Z" fill="white" opacity="0.6" />
+    <path d="M25 45 A25 25 0 0 1 75 45" fill={COLORS.SKY} />
+    <path d="M40 45 L50 30 L60 45 Z" fill="white" />
     <g transform="translate(0, 4)">
-      <rect x="22" y="50" width="22" height="28" rx="2" fill={COLORS.NAVY} />
-      <rect x="44" y="50" width="34" height="28" rx="2" fill={COLORS.SOLAR} />
-      <rect x="78" y="58" width="4" height="12" rx="2" fill={COLORS.SOLAR} />
-      <path d="M52 45 L44 64 H56 L48 83" stroke={COLORS.SKY} strokeWidth="4" strokeLinejoin="round" strokeLinecap="round" />
-      <path d="M52 45 L44 64 H56 L48 83" stroke="white" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
+      <rect x="25" y="50" width="20" height="28" rx="2" fill={COLORS.NAVY} />
+      <rect x="45" y="50" width="30" height="28" rx="2" fill={COLORS.SOLAR} />
+      <path d="M55 45 L48 62 H58 L51 79" stroke="white" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
     </g>
   </svg>
 );

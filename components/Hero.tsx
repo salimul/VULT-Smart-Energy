@@ -64,11 +64,11 @@ const Hero: React.FC = () => {
         <div className="lg:col-span-5 relative group py-12 lg:py-0">
           <div className="absolute -inset-4 bg-[#0056B3]/5 rounded-[3rem] blur-3xl group-hover:bg-[#0056B3]/10 transition-all duration-700" />
           
-          <div className="relative rounded-[2rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border-4 border-white transition-transform duration-700 group-hover:scale-[1.02]">
+          <div className="relative rounded-[2rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border-4 border-white transition-transform duration-700 group-hover:scale-[1.02] bg-slate-200 aspect-[4/5] sm:aspect-auto">
             <img 
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200" 
               alt="VULT Smart Energy Node" 
-              className="w-full h-auto block"
+              className="w-full h-full object-cover block"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none" />
           </div>
