@@ -5,7 +5,8 @@ import { Product } from './types';
 export const COLORS = {
   NAVY: '#0B1D35',
   SKY: '#0056B3',
-  SOLAR: '#FFB800',
+  SOLAR: '#E37B2F', // Warmer orange-yellow from the device image
+  PEARL: '#F8FAFC', // Clean light background
 };
 
 export const PRODUCTS: Product[] = [

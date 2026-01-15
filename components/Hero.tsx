@@ -3,54 +3,87 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    <section id="hero" className="relative h-screen flex items-center overflow-hidden bg-navy">
-      {/* Background Image Wrapper */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1466611653911-954ffea5acc0?auto=format&fit=crop&q=80&w=1920" 
-          alt="Clean Energy Infrastructure" 
-          className="w-full h-full object-cover opacity-30"
-          onError={(e) => {
-             (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1497435334941-8c899ee9e8e2?auto=format&fit=crop&q=80&w=1920';
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/60 via-navy/40 to-navy/80" />
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-slate-50 pt-20 md:pt-0">
+      {/* Decorative clean background patterns */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-white hidden lg:block" />
+      <div className="absolute top-0 right-0 w-full h-full opacity-[0.03] pointer-events-none z-0">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0B1D35" strokeWidth="1"/>
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 w-full z-10 text-white relative">
-        <div className="max-w-3xl space-y-8">
+      <div className="max-w-7xl mx-auto px-6 w-full z-10 grid lg:grid-cols-12 gap-12 items-center">
+        {/* Content Column */}
+        <div className="lg:col-span-7 space-y-10 py-12">
           <div className="flex items-center gap-4 animate-fade-in">
-            <div className="h-[2px] w-12 bg-solar" />
-            <span className="text-solar font-black tracking-[0.3em] uppercase text-sm">Empowering a Carbon-Free Future</span>
+            <div className="h-[2px] w-12 bg-[#E37B2F]" />
+            <span className="text-[#E37B2F] font-black tracking-[0.3em] uppercase text-xs">The Future of Smart Energy</span>
           </div>
           
-          <h1 className="text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter">
-            LEADING <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-300">ENERGY STORAGE</span> <br />
-            SYSTEMS
+          <h1 className="text-5xl md:text-[5.5rem] font-extrabold leading-[1] tracking-tight text-[#0B1D35]">
+            INTELLIGENT <br />
+            <span className="text-[#0056B3]">ENERGY STORAGE</span> <br />
+            SIMPLIFIED.
           </h1>
           
-          <p className="text-lg md:text-2xl text-slate-300 max-w-2xl leading-relaxed font-medium">
-            VULT-Energy provides high-performance ESS solutions for residential, commercial, and utility-scale projects globally.
+          <p className="text-lg md:text-2xl text-slate-600 max-w-xl leading-relaxed font-medium">
+            Meet the <span className="text-[#0B1D35] font-bold">VULT Smart Node</span>. A high-performance ESS solution designed for the modern home and global infrastructure.
           </p>
           
           <div className="flex flex-wrap gap-5 pt-4">
-            <a href="#products" className="bg-sky text-white px-8 md:px-10 py-4 md:py-5 rounded-sm text-base md:text-lg font-black hover:bg-white hover:text-navy transition-all transform hover:scale-105 shadow-xl inline-block uppercase tracking-widest text-center">
+            <a href="#products" className="bg-[#0B1D35] text-white px-10 py-5 rounded-lg text-lg font-black hover:bg-[#0056B3] transition-all shadow-2xl inline-block uppercase tracking-widest text-center">
               Explore Products
             </a>
-            <a href="#solutions" className="bg-transparent border-2 border-white text-white px-8 md:px-10 py-4 md:py-5 rounded-sm text-base md:text-lg font-black hover:bg-white hover:text-navy transition-all inline-block uppercase tracking-widest text-center">
-              Global Partnership
+            <a href="#solutions" className="bg-white border-2 border-slate-200 text-[#0B1D35] px-10 py-5 rounded-lg text-lg font-black hover:border-[#0B1D35] transition-all inline-block uppercase tracking-widest text-center">
+              Global Supply
             </a>
           </div>
-        </div>
-      </div>
 
-      {/* Floating Industrial Badge */}
-      <div className="absolute bottom-12 md:bottom-20 right-12 md:right-20 hidden lg:block animate-pulse duration-[3000ms]">
-        <div className="bg-white/10 backdrop-blur-xl p-6 rounded-2xl border border-white/20 shadow-2xl max-w-xs">
-          <div className="text-solar text-4xl font-black mb-1">98.9%</div>
-          <div className="text-white text-xs font-bold uppercase tracking-widest mb-3">Peak Efficiency</div>
-          <p className="text-slate-300 text-sm leading-snug">Industrial-grade silicon carbide technology for superior thermal management.</p>
+          <div className="flex items-center gap-8 pt-8 border-t border-slate-200">
+             <div className="flex flex-col">
+                <span className="text-2xl font-black text-[#0B1D35]">98.9%</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Peak Efficiency</span>
+             </div>
+             <div className="h-10 w-[1px] bg-slate-200" />
+             <div className="flex flex-col">
+                <span className="text-2xl font-black text-[#0B1D35]">10 Yrs</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Full Warranty</span>
+             </div>
+             <div className="h-10 w-[1px] bg-slate-200" />
+             <div className="flex flex-col">
+                <span className="text-2xl font-black text-[#0B1D35]">Tier-1</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Manufactured</span>
+             </div>
+          </div>
+        </div>
+
+        {/* Image Column */}
+        <div className="lg:col-span-5 relative group">
+          <div className="absolute -inset-4 bg-[#0056B3]/5 rounded-[3rem] blur-3xl group-hover:bg-[#0056B3]/10 transition-all duration-700" />
+          
+          {/* Main Product Render (Matches User Attachment) */}
+          <div className="relative rounded-[2rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border-4 border-white transition-transform duration-700 group-hover:scale-[1.02]">
+            <img 
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200" 
+              alt="VULT Smart Energy Node" 
+              className="w-full h-auto"
+            />
+            {/* Overlay Gradient to clean up the edges */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent pointer-events-none" />
+          </div>
+
+          {/* Floating UI Element */}
+          <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-2xl border border-slate-100 animate-bounce duration-[4000ms]">
+            <div className="flex items-center gap-3">
+              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+              <span className="text-xs font-black uppercase tracking-widest text-[#0B1D35]">System Active</span>
+            </div>
+            <div className="text-2xl font-black text-[#0B1D35] mt-1">4.2 kW</div>
+            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Current Solar Generation</div>
+          </div>
         </div>
       </div>
     </section>
