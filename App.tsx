@@ -107,7 +107,7 @@ const App: React.FC = () => {
               <div className="space-y-8">
                 <h2 className="text-4xl md:text-6xl font-black text-navy leading-tight">Start Your Project <br /> With VULT</h2>
                 <p className="text-lg text-slate-600 font-medium">
-                  Whether you are an installer, distributor, or project developer, our technical team is ready to assist with your energy storage configuration.
+                  Whether you are an installer, distributor, or project developer, our technical team is ready to assist with your energy storage system configuration.
                 </p>
                 <ul className="space-y-5">
                    {['Project Consultation', 'Technical Support', 'Bulk Supply Quotes', 'Partner Training'].map(item => (

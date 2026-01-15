@@ -8,7 +8,7 @@ const ProductGrid: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-24 space-y-4">
           <h2 className="text-sky font-black uppercase tracking-[0.4em] text-sm">Advanced Portfolio</h2>
-          <h3 className="text-4xl md:text-6xl font-black text-navy leading-tight">Energy Storage Solutions</h3>
+          <h3 className="text-4xl md:text-6xl font-black text-navy leading-tight">Energy Storage Systems</h3>
           <div className="w-24 h-1.5 bg-solar mx-auto rounded-full" />
         </div>
 

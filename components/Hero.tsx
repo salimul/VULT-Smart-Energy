@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
           
           <h1 className="text-5xl md:text-[5.5rem] font-extrabold leading-[1.1] tracking-tight text-[#0B1D35]">
             INTELLIGENT <br />
-            <span className="text-[#0056B3]">ENERGY STORAGE</span> <br />
+            <span className="text-[#0056B3]">ENERGY STORAGE SYSTEM</span> <br />
             SIMPLIFIED.
           </h1>
           

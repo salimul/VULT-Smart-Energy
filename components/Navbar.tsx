@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
               VULT
             </span>
             <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] text-[#0056B3]">
-              Energy Storage
+              Energy Storage System
             </span>
           </div>
         </a>
